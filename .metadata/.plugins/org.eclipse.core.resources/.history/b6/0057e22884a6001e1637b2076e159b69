@@ -1,0 +1,5 @@
+package com.client.models.entity;
+
+public class client {
+
+}

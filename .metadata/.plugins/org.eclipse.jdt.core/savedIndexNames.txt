@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+C:\Users\zixta\OneDrive\Documents\Patito-Workspace\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+4186246570.index
+697164339.index
+262142283.index
+3413725848.index

@@ -1,0 +1,12 @@
+package com.order.models.dao;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.order.models.entity.order;
+
+public interface orderDao extends JpaRepository<order, Long> {
+    Optional<Integer> findTopByOrderByIdDesc();
+
+}

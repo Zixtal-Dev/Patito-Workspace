@@ -1,0 +1,13 @@
+package com.client.models.entity;
+
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="clients")
+
+public class client implements Serializable {
+
+}

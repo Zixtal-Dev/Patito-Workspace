@@ -1,0 +1,11 @@
+spring.application.name=product-service
+server.port=8001
+
+    spring.datasource.url=jdbc:sqlserver://localhost;InstanceName=SQLEXPRESS;databaseName=master;integratedsecurity=true;encrypt=true;trustServerCertificate=true
+spring.datasource.username=sa
+spring.datasource.password=Admin360@
+
+logging.level.org.springframework.web=DEBUG
+
+
+

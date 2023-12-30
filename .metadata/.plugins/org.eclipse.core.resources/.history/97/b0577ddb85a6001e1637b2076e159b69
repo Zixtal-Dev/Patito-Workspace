@@ -1,0 +1,5 @@
+package com.client.models.dao;
+
+public interface clientDao {
+
+}

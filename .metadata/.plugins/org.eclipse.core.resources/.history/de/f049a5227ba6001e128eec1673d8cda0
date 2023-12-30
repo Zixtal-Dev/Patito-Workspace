@@ -1,0 +1,12 @@
+spring.application.name=product-service
+server.port=8001
+
+spring.datasource.url=jdbc:sqlserver://DESKTOP-78EPEBK\SQLEXPRESS:50867;trustServerCertificate=true;databaseName=master
+
+spring.datasource.username=sa
+spring.datasource.password=Admin360@
+
+logging.level.org.springframework.web=DEBUG
+
+
+

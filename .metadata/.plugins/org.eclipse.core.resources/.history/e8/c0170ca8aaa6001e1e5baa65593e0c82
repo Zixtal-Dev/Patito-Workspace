@@ -1,0 +1,9 @@
+package com.product.models.dao;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.product.models.entity.product;
+
+public interface productDao extends CrudRepository<product, Long> {
+
+}
