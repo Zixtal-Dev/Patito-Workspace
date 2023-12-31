@@ -1,5 +1,6 @@
 package com.order.models.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.order.models.dao.orderDao;
+import com.order.models.dao.pivotDao;
+import com.order.models.dao.productDao;
 import com.order.models.entity.order;
+import com.order.models.entity.pivot;
+import com.order.models.entity.product;
+import com.order.models.entity.productInOrder;
 
 @Service
 public class orderService implements IOrderService {
 	
 	@Autowired
 	private orderDao OrderDao;
+	@Autowired
+	private pivotDao PivotDao;
+	@Autowired
+	private productDao ProductDao;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -49,6 +59,42 @@ public class orderService implements IOrderService {
 		order myorder= OrderDao.findTopByOrderByIdDesc();
 		return myorder.getId()+1;
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<productInOrder> findProdutc(int id) {
+		List<pivot> myPivotList= PivotDao.findAllByOrderid(id);
+		List<productInOrder> myProductInOrderList = new ArrayList<productInOrder>();
+		float total=0;
+		for(pivot myPivot : myPivotList) {
+			productInOrder myProductInOrder=new productInOrder();
+			product myProduct = ProductDao.findById((long)myPivot.getOrderid()).orElse(null);
+			
+			myProductInOrder.setAmount(myPivot.getAmount());
+			myProductInOrder.setDiscount(myProduct.getDiscount());
+			myProductInOrder.setExistentproduct(myProduct.getExistentproduct());
+			myProductInOrder.setListprice(myProduct.getListprice());
+			myProductInOrder.setNameproduc(myProduct.getNameproduc());
+			myProductInOrder.setOrderid(myPivot.getOrderid());
+			myProductInOrder.setProductid(myPivot.getProductid());
+			myProductInOrder.setTotal((myProduct.getListprice()-myProduct.getDiscount())*myPivot.getAmount());
+			total=total+myProductInOrder.getTotal();
+			myProductInOrderList.add(myProductInOrder);
+		}
+		return myProductInOrderList;
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public float Total(int id) {
+		float total=0;
+		List<productInOrder> myList = findProdutc(id);
+		for(productInOrder myProduct : myList) {
+			total=total + myProduct.getTotal();
+		}
+		return total;
+	}
+	
 
 
 	

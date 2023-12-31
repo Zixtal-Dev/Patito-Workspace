@@ -1,0 +1,15 @@
+package com.order.models.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="pivottableorders_products")
+public class pivot {
+
+	@Id
+	int orderid;
+	int productid;
+	int amount;
+}

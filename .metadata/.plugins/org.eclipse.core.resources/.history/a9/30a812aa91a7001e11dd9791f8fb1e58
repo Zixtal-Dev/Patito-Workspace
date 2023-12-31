@@ -1,0 +1,68 @@
+package com.order.models.entity;
+
+public class products {
+	int orderid;
+	int productid;
+	int amount;
+	int id;
+	String nameproduct;
+	int existentproduct;
+	float listprice;
+	float discount;
+	float total;
+	public int getOrderid() {
+		return orderid;
+	}
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+	public int getProductid() {
+		return productid;
+	}
+	public void setProductid(int productid) {
+		this.productid = productid;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNameproduct() {
+		return nameproduct;
+	}
+	public void setNameproduct(String nameproduct) {
+		this.nameproduct = nameproduct;
+	}
+	public int getExistentproduct() {
+		return existentproduct;
+	}
+	public void setExistentproduct(int existentproduct) {
+		this.existentproduct = existentproduct;
+	}
+	public float getListprice() {
+		return listprice;
+	}
+	public void setListprice(float listprice) {
+		this.listprice = listprice;
+	}
+	public float getDiscount() {
+		return discount;
+	}
+	public void setDiscount(float discount) {
+		this.discount = discount;
+	}
+	public float getTotal() {
+		return total;
+	}
+	public void setTotal(float total) {
+		this.total = total;
+	}
+	
+}

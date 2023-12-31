@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.order.models.entity.order;
+import com.order.models.entity.productInOrder;
 import com.order.models.service.IOrderService;
 
 @RestController
@@ -35,6 +36,16 @@ public class orderController {
 		@GetMapping("/order/show/{id}")
 		public order show(@PathVariable("id") int id) {
 			return OrderService.findById(id);
+		}
+		
+		@GetMapping("/order/pivot/{id}")
+		public List<productInOrder> findpivot(@PathVariable("id") int id) {
+			return OrderService.findProdutc(id);
+		}
+		
+		@GetMapping("/order/total/{id}")
+		public float total(@PathVariable("id") int id) {
+			return OrderService.Total(id);
 		}
 		
 		@PostMapping("/order/create")

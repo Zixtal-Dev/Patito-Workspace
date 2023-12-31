@@ -1,0 +1,13 @@
+package com.order.models.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class pivot {
+
+	@Id
+	int orderid;
+	int productid;
+	int amount;
+}

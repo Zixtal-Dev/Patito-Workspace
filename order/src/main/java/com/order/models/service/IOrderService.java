@@ -3,6 +3,7 @@ package com.order.models.service;
 import java.util.List;
 
 import com.order.models.entity.order;
+import com.order.models.entity.productInOrder;
 
 public interface IOrderService {
 	
@@ -15,4 +16,8 @@ public interface IOrderService {
 	public void delete(int id);
 	
 	public Integer maxId(); 
+	
+	public List<productInOrder> findProdutc(int id);
+	
+	public float Total(int id);
 }
