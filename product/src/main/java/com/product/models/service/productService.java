@@ -21,4 +21,13 @@ public class productService implements IProductService {
 	public List<product> findAll(){
 		return (List<product>) ProductDao.findAll();
 	}
+	
+	@Override
+	public Integer maxId() {
+		
+		product myorder= ProductDao.findTopByOrderByIdDesc();
+		int newId= myorder.getId()+1;
+		return newId;
+	}
+	
 }

@@ -14,7 +14,7 @@ public class product {
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
-		private String nameproduc;
+		private String nameproduct;
 		private int existentproduct;
 		private float listprice;
 		private float discount;
@@ -26,10 +26,10 @@ public class product {
 			this.id = id;
 		}
 		public String getNameproduc() {
-			return nameproduc;
+			return nameproduct;
 		}
 		public void setNameproduc(String nameproduc) {
-			this.nameproduc = nameproduc;
+			this.nameproduct = nameproduc;
 		}
 		public int getExistentproduct() {
 			return existentproduct;

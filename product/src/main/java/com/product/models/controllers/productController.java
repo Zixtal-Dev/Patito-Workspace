@@ -11,7 +11,7 @@ import com.product.models.entity.product;
 import com.product.models.service.IProductService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class productController {
 
 	
@@ -21,5 +21,10 @@ public class productController {
 	@GetMapping("/product/list")
 	public List<product> list(){
 		return ProductService.findAll();
+	}
+	
+	@GetMapping("/product/maxid")
+	public Integer max() {
+		return ProductService.maxId();
 	}
 }

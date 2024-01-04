@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.order.models.dao.clientDao;
 import com.order.models.dao.orderDao;
 import com.order.models.dao.pivotDao;
 import com.order.models.dao.productDao;
+import com.order.models.entity.client;
 import com.order.models.entity.order;
 import com.order.models.entity.pivot;
 import com.order.models.entity.product;
@@ -26,11 +28,19 @@ public class orderService implements IOrderService {
 	private pivotDao PivotDao;
 	@Autowired
 	private productDao ProductDao;
+	@Autowired
+	private clientDao ClientDao;
 	
 	@Override
 	@Transactional(readOnly=true)
 	public List<order> findAll(){
-		return (List<order>) OrderDao.findAll();
+		List<order> mylist = OrderDao.findAll();
+		for(order myorder : mylist) 
+		{
+		 client myclient = ClientDao.findById((long)myorder.getClientid()).orElse(null);
+		 myorder.setClientname(myclient.getClientname());
+		}
+		return mylist;
 	} 
 	
 	@Override

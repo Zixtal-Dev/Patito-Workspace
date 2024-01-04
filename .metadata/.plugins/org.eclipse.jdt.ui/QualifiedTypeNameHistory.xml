@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.product.models.dao.productDao"/>
     <fullyQualifiedTypeName name="com.product.models.service.IProductService"/>
     <fullyQualifiedTypeName name="com.product.models.entity.product"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
@@ -9,7 +8,6 @@
     <fullyQualifiedTypeName name="com.client.models.dao.clientDao"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="com.client.models.service.clientService"/>
-    <fullyQualifiedTypeName name="com.client.models.entity.client"/>
     <fullyQualifiedTypeName name="com.client.models.service.IClientService"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
     <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
@@ -56,4 +54,9 @@
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.util.Calendar"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="com.product.models.dao.productDao"/>
+    <fullyQualifiedTypeName name="com.client.models.entity.client"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Transient"/>
+    <fullyQualifiedTypeName name="com.order.models.dao.clientDao"/>
+    <fullyQualifiedTypeName name="com.order.models.entity.client"/>
 </qualifiedTypeNameHistroy>

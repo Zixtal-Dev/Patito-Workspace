@@ -7,5 +7,6 @@ import com.product.models.entity.product;
 public interface IProductService {
 
 	public List<product> findAll();
+	public Integer maxId();
 	
 }

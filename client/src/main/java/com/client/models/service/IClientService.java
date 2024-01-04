@@ -9,4 +9,6 @@ public interface IClientService {
 	public List<client> findAll();
 	
 	public client save(client Client);
+	
+	public Integer maxId();
 }

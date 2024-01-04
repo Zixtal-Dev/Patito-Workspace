@@ -28,4 +28,11 @@ public class clientService implements IClientService {
 		return ClientDao.save(Cliente);
 	}
 	
+	@Override
+	public Integer maxId() {
+		
+		client myorder= ClientDao.findTopByOrderByIdDesc();
+		int newId= myorder.getId()+1;
+		return newId;
+	}
 }

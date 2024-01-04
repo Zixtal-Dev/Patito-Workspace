@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import jakarta.persistence.GenerationType;
 
 
@@ -21,18 +22,30 @@ public class order {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer id;
 private String seller;
+private Integer clientid;
+
+@Transient
 private String clientname;
+
 private String status;
 private String idshop;
 
 @Temporal(TemporalType.TIMESTAMP)
 private Date createat;
 
-public int getId() {
+public Integer getId() {
 	return id;
 }
 
-public void setId(int id) {
+public String getClientname() {
+	return clientname;
+}
+
+public void setClientname(String clientname) {
+	this.clientname = clientname;
+}
+
+public void setId(Integer id) {
 	this.id = id;
 }
 
@@ -44,12 +57,12 @@ public void setSeller(String seller) {
 	this.seller = seller;
 }
 
-public String getClientname() {
-	return clientname;
+public Integer getClientid() {
+	return clientid;
 }
 
-public void setClientname(String clientname) {
-	this.clientname = clientname;
+public void setClientid(Integer clientid) {
+	this.clientid = clientid;
 }
 
 public String getStatus() {
@@ -60,21 +73,22 @@ public void setStatus(String status) {
 	this.status = status;
 }
 
-public String getIdShop() {
+public String getIdshop() {
 	return idshop;
 }
 
-public void setIdShop(String idShop) {
-	this.idshop = idShop;
+public void setIdshop(String idshop) {
+	this.idshop = idshop;
 }
 
-public Date getCreateAt() {
+public Date getCreateat() {
 	return createat;
 }
 
-public void setCreateAt(Date createAt) {
-	this.createat = createAt;
+public void setCreateat(Date createat) {
+	this.createat = createat;
 }
+
 
 
 
