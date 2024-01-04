@@ -1,6 +1,8 @@
 package com.order.models.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +59,7 @@ public class orderService implements IOrderService {
 	public Integer maxId() {
 		
 		order myorder= OrderDao.findTopByOrderByIdDesc();
-		return myorder.getId()+1;
+		return myorder.getId();
 	}
 	
 	@Override
@@ -93,6 +95,21 @@ public class orderService implements IOrderService {
 			total=total + myProduct.getTotal();
 		}
 		return total;
+	}
+	
+	public static Date getDifferenceBetwenDates(Date dateInicio) {
+		
+		Date currentDate =  new Date();
+		
+	    long milliseconds = currentDate.getTime() - dateInicio.getTime();
+	    int seconds = (int) (milliseconds / 1000) % 60;
+	    int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+	    int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
+	    Calendar c = Calendar.getInstance();
+	    c.set(Calendar.SECOND, seconds);
+	    c.set(Calendar.MINUTE, minutes);
+	    c.set(Calendar.HOUR_OF_DAY, hours);
+	    return c.getTime();
 	}
 	
 

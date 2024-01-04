@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
 <aop-project name="order"/>
+<aop-project name="Users"/>
 <aop-project name="product"/>
 <aop-project name="client"/>
 </aop-reference-model>

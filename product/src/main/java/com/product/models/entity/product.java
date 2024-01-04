@@ -16,7 +16,7 @@ public class product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nameproduc;
+	private String nameproduct;
 	private int existentproduct;
 	private float listprice;
 	private float discount;
@@ -28,10 +28,10 @@ public class product implements Serializable {
 		this.id = id;
 	}
 	public String getNameProduc() {
-		return nameproduc;
+		return nameproduct;
 	}
 	public void setNameProduc(String nameProduc) {
-		this.nameproduc = nameProduc;
+		this.nameproduct = nameProduc;
 	}
 	public int getExistentProduct() {
 		return existentproduct;
