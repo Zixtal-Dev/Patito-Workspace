@@ -19,7 +19,19 @@ public class productService implements IProductService {
 	@Override
 	@Transactional(readOnly=true)
 	public List<product> findAll(){
-		return (List<product>) ProductDao.findAll();
+		List<product> myList= ProductDao.findAll();
+		
+		for(product myProduct : myList) {
+			if(myProduct.getExistentProduct()<=0) {
+				myProduct.setIsbtnenabled(true);
+			}
+			else {
+				myProduct.setIsbtnenabled(false);
+			}
+			myProduct.setTotal(myProduct.getListPrice()-myProduct.getDiscount()); 
+			
+		}
+		return myList;
 	}
 	
 	@Override

@@ -44,10 +44,8 @@
     <fullyQualifiedTypeName name="com.order.models.dao.pivotDao"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.ListCrudRepository"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="com.order.models.entity.pivot"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.order.models.dao.productDao"/>
-    <fullyQualifiedTypeName name="com.order.models.entity.product"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.order.models.entity.productInOrder"/>
@@ -59,4 +57,7 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Transient"/>
     <fullyQualifiedTypeName name="com.order.models.dao.clientDao"/>
     <fullyQualifiedTypeName name="com.order.models.entity.client"/>
+    <fullyQualifiedTypeName name="com.order.models.entity.pivot"/>
+    <fullyQualifiedTypeName name="com.order.models.entity.product"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

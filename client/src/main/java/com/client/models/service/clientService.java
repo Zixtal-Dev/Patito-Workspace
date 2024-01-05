@@ -35,4 +35,9 @@ public class clientService implements IClientService {
 		int newId= myorder.getId()+1;
 		return newId;
 	}
+
+	@Override
+	public client finById(int id) {
+		return ClientDao.findById((long)id).orElse(null);
+	}
 }

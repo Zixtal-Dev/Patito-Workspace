@@ -11,4 +11,6 @@ public interface IClientService {
 	public client save(client Client);
 	
 	public Integer maxId();
+	
+	public client finById(int id);
 }

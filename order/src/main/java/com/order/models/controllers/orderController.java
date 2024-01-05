@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.order.models.entity.order;
+import com.order.models.entity.pivot;
+import com.order.models.entity.product;
 import com.order.models.entity.productInOrder;
 import com.order.models.service.IOrderService;
 
@@ -40,15 +42,17 @@ public class orderController {
 			return OrderService.findById(id);
 		}
 		
+		@GetMapping("/product/show/{id}")
+		public product productshow(@PathVariable("id") int id) {
+			return OrderService.findProById(id);
+		}
+		
 		@GetMapping("/order/pivot/{id}")
 		public List<productInOrder> findpivot(@PathVariable("id") int id) {
 			return OrderService.findProdutc(id);
 		}
 		
-		@GetMapping("/order/total/{id}")
-		public float total(@PathVariable("id") int id) {
-			return OrderService.Total(id);
-		}
+
 		
 		@PostMapping("/order/create")
 		@ResponseStatus(HttpStatus.CREATED)
@@ -66,6 +70,23 @@ public class orderController {
 		@ResponseStatus(HttpStatus.NO_CONTENT)
 		public void delete(@PathVariable("id") int id) {
 			OrderService.delete(id);
+		}
+		
+		@DeleteMapping("/order/pivot/delete/{id}")
+		@ResponseStatus(HttpStatus.NO_CONTENT)
+		public void deletePivot(@PathVariable("id") int id) {
+			OrderService.deletePivot(id);
+		}
+		
+		@PostMapping("/pivote/create/{orderid}/{productid}")
+		@ResponseStatus(HttpStatus.CREATED)
+		public pivot createPivote(@RequestBody pivot Pivot,@PathVariable("orderid") int orderid,@PathVariable("productid") int productid) {
+			return OrderService.savePivot(Pivot, orderid, productid);
+		}
+		
+		@GetMapping("/order/total/{id}")
+		public float total(@PathVariable("id") int id) {
+			return OrderService.Total(id);
 		}
 
 }

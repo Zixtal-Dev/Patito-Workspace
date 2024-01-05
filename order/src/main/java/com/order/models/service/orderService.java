@@ -54,8 +54,15 @@ public class orderService implements IOrderService {
 	public void delete(int id) {
 		OrderDao.deleteById((long)id);
 	}
+	
+	@Override
+	@Transactional
+	public void deletePivot(int id) {
+		PivotDao.deleteByOrderid(id);
+	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public order findById(int id) {
 		return OrderDao.findById((long)id).orElse(null);
 	}
@@ -66,46 +73,47 @@ public class orderService implements IOrderService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Integer maxId() {
 		
 		order myorder= OrderDao.findTopByOrderByIdDesc();
-		return myorder.getId();
+		return myorder.getId()+1;
 	}
 	
 	@Override
 	@Transactional(readOnly=true)
 	public List<productInOrder> findProdutc(int id) {
 		List<pivot> myPivotList= PivotDao.findAllByOrderid(id);
-		List<productInOrder> myProductInOrderList = new ArrayList<productInOrder>();
-		float total=0;
-		for(pivot myPivot : myPivotList) {
-			productInOrder myProductInOrder=new productInOrder();
-			product myProduct = ProductDao.findById((long)myPivot.getOrderid()).orElse(null);
+		List<productInOrder> listnewOrderProduct = new ArrayList<productInOrder>();
+		for(pivot myPivot: myPivotList) 
+		{
+			productInOrder newOrderProduct = new productInOrder();
+			product newProduct= findProById(myPivot.getProductid());
+			newOrderProduct.setAmount(myPivot.getAmount());
+			newOrderProduct.setDiscount(newProduct.getDiscount());
+			newOrderProduct.setExistentproduct(newProduct.getExistentProduct());
+			newOrderProduct.setListprice(newProduct.getListPrice());
+			newOrderProduct.setNameproduc(newProduct.getNameProduct());
+			newOrderProduct.setOrderid(myPivot.getOrderid());
+			newOrderProduct.setProductid(myPivot.getProductid());
+			newOrderProduct.setTotal((newProduct.getListPrice()-newProduct.getDiscount())*myPivot.getAmount());
 			
-			myProductInOrder.setAmount(myPivot.getAmount());
-			myProductInOrder.setDiscount(myProduct.getDiscount());
-			myProductInOrder.setExistentproduct(myProduct.getExistentproduct());
-			myProductInOrder.setListprice(myProduct.getListprice());
-			myProductInOrder.setNameproduc(myProduct.getNameproduc());
-			myProductInOrder.setOrderid(myPivot.getOrderid());
-			myProductInOrder.setProductid(myPivot.getProductid());
-			myProductInOrder.setTotal((myProduct.getListprice()-myProduct.getDiscount())*myPivot.getAmount());
-			total=total+myProductInOrder.getTotal();
-			myProductInOrderList.add(myProductInOrder);
+			listnewOrderProduct.add(newOrderProduct);
 		}
-		return myProductInOrderList;
+		return listnewOrderProduct;
 	}
 	
 	@Override
 	@Transactional(readOnly=true)
 	public float Total(int id) {
-		float total=0;
-		List<productInOrder> myList = findProdutc(id);
-		for(productInOrder myProduct : myList) {
-			total=total + myProduct.getTotal();
-		}
-		return total;
+	float total=0;
+	List<productInOrder> myList = findProdutc(id);
+	for(productInOrder myProduct : myList) {
+		total=total + myProduct.getTotal();
 	}
+	return total;
+}
+
 	
 	public static Date getDifferenceBetwenDates(Date dateInicio) {
 		
@@ -121,10 +129,42 @@ public class orderService implements IOrderService {
 	    c.set(Calendar.HOUR_OF_DAY, hours);
 	    return c.getTime();
 	}
-	
 
+	@Override
+	public pivot savePivot(pivot Pivot,int orderid,int productid) {
+		List<pivot> findorder = PivotDao.findAllByOrderid(orderid);
+		if(findorder.size()>0) {
+			pivot newPivot = new pivot();
+			Boolean isProduct=false; 
+			for(pivot MyfindOrder: findorder) 
+			{
+				if(MyfindOrder.getProductid()== productid) 
+				{
+					MyfindOrder.setAmount(MyfindOrder.getAmount()+1);
+					newPivot=MyfindOrder;
+					isProduct=true;
+					break;
+				}
+				
+			}
+			
+			if(isProduct) {
+				return PivotDao.save(newPivot);
+			}
+			
+			else {
+				return PivotDao.save(Pivot);
+			}
+						
+		}
+		else{
+			return PivotDao.save(Pivot);
+		}
+	}
 
-	
-
+	@Override
+	public product findProById(int id) { 
+		return ProductDao.findById((long)id).orElse(null);
+	}
 
 }
