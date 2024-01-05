@@ -1,5 +1,6 @@
 package com.order.models.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.order.models.entity.order;
@@ -28,4 +29,6 @@ public interface IOrderService {
 	public pivot savePivot(pivot Pivot,int orderid,int productid);
 	
 	public void deletePivot(int id);
+	
+	public  Boolean getDifferenceBetwenDates(int orderid);
 	}

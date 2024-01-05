@@ -1,5 +1,6 @@
 package com.order.models.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,10 @@ public class orderController {
 		@GetMapping("/order/total/{id}")
 		public float total(@PathVariable("id") int id) {
 			return OrderService.Total(id);
+		}
+		@GetMapping("/date/{id}")
+		public Boolean FindDate(@PathVariable("id") int id) {
+			return OrderService.getDifferenceBetwenDates(id);
 		}
 
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -115,19 +117,28 @@ public class orderService implements IOrderService {
 }
 
 	
-	public static Date getDifferenceBetwenDates(Date dateInicio) {
+	public  Boolean getDifferenceBetwenDates(int orderid) {
 		
+		order myOrder = OrderDao.findById((long)orderid).orElse(null);
+		
+		Boolean isDeleteEnable=false;
 		Date currentDate =  new Date();
 		
-	    long milliseconds = currentDate.getTime() - dateInicio.getTime();
-	    int seconds = (int) (milliseconds / 1000) % 60;
-	    int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
-	    int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
-	    Calendar c = Calendar.getInstance();
-	    c.set(Calendar.SECOND, seconds);
-	    c.set(Calendar.MINUTE, minutes);
-	    c.set(Calendar.HOUR_OF_DAY, hours);
-	    return c.getTime();
+	    long duration = currentDate.getTime() -myOrder.getCreateat().getDate();
+	    
+	    long diffInSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+	    long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+	    long diffInHours = TimeUnit.MILLISECONDS.toHours(duration);
+	    long diffInDays = TimeUnit.MILLISECONDS.toDays(duration);
+	    
+	    if(diffInMinutes>=10) {
+	    	isDeleteEnable=true;
+	    }
+	    else {
+	    	isDeleteEnable=false;
+	    }
+	    
+	    return isDeleteEnable ;
 	}
 
 	@Override
